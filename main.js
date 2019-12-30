@@ -1,64 +1,53 @@
 class Calculator {
   constructor() {
-    this.displaySmall = document.getElementById('text--small');
-    this.displayBig = document.getElementById('text--big')
-
-    this.currentOperand = '';
-    this.answer;
-
-    this.numKeys = document.getElementsByClassName('number');
-    this.pointKey = document.getElementsByClassName('.');
-    this.operatorKeys = document.getElementsByClassName('operator');
-    this.singleDeleteKey = document.getElementsByClassName('arrow');
-    this.allDeleteKey = document.getElementsByClassName('allClear');
-    this.solveKey = document.getElementById('solve');
+    this.operand = "";
   }
 
-  //take number inputs
-  takeNumbers() {
-    for (let i = 0; i < this.numKeys.length; i++) {
-      this.numKeys[i].addEventListener('click', function (e) {
-        e.preventDefault();
-
-        let numberInput = e.target.value;
-        console.log(this)
-        return numberInput;
-      })
-    }
+  // get the operand on the display
+  getDisplay() {
+    return this.operand;
   }
 
-  // take operator inputs
-  takeOperators() {
-    for (let i = 0; i < this.operatorKeys.length; i++) {
-      this.operatorKeys[i].addEventListener('click', function (e) {
-        e.preventDefault();
-
-        let operatorInput = e.target.value;
-        return operatorInput;
-      })
-    }
+  //set up the display
+  setDisplay(input) {
+    this.operand = input
   }
 
-  //delete individually
-  singleDelete() {
-    this.singleDeleteKey.addEventListener('click', function (e) {
-      e.preventDefault();
-      this.displayBig.
-    })
+  //take the user inputs
+  pushText(digit) {
+    this.operand += digit;
   }
-  //delete all
-  allDelete() {
 
+  // when ARROW key is clicked, remove the last one on the display
+  popText() {
+    this.operand = this.operand.slice(0, -1);
   }
+
+  // when C key is clicked, remove all
+  clearText() {
+    this.setDisplay("");
+  }
+
 }
 
+let ui = new Calculator()
 
-const ui = new Calculator();
+//take user's click inputs and make an operand.
+document.querySelector('.calculator__keys').addEventListener('click', (e) => {
+  e.preventDefault();
+  let input = e.target.value;
 
-ui.takeNumbers();
-ui.takeOperators();
+  if (e.target.classList.contains('number') || e.target.classList.contains('operator')) {
+    ui.pushText(input);
+  }
 
+  if (e.target.id == 'arrow') {
+    ui.popText();
+  }
 
-document.addEventListener('DOMContentLoaded', function () {
+  if (e.target.id == 'allClear') {
+    clearText();
+  }
 
+  console.log(ui.operand);
 })

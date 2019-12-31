@@ -32,8 +32,6 @@ body {
   align-items: center;
 }
 
-
-
 /*------Calculator basic setup-------*/
 .calculator {
   width: 70%;
@@ -43,9 +41,6 @@ body {
   grid-template-rows: 1fr 4fr;
   grid-gap: 1.5rem;
 }
-
-
-
 
 /*------Display-------*/
 .calcualtor__display {
@@ -79,8 +74,6 @@ body {
   font-size: 2.5rem;
 }
 
-
-
 /*------Keys-------*/
 .calculator__keys {
   width: 100%;
@@ -99,4 +92,11 @@ form {
 
 .calculator__key:hover {
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 765px) {
+  .container {
+    width: 90%;
+  }
 }

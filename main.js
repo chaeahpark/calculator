@@ -1,7 +1,10 @@
 class Calculator {
   constructor() {
     this.operand = "";
+    this.previousOperand = "";
     this.answer;
+    this.equalSign = '=';
+    this.isNumInputNextOk = true;
   }
 
   // get the operand on the display
@@ -24,15 +27,22 @@ class Calculator {
     this.operand = this.operand.slice(0, -1);
   }
 
-  // when C key is clicked, remove all
+  // when the C key is clicked, remove all
   clearText() {
     this.setDisplay("");
   }
 
+  //when the SOLVE key is clicked, do calculation with the operand and show the answer/result.  
   solve() {
     this.answer = eval(this.operand);
-    this.clearText();
-    this.operand = this.answer.toString();
+
+    if (this.answer) {
+      this.previousOperand = this.operand;
+      document.getElementById('text--small').textContent = this.previousOperand + ' ' + this.equalSign;
+      this.clearText();
+      this.operand = this.answer.toString();
+      this.isNumInputNextOk = false;
+    }
   }
 }
 
@@ -43,8 +53,20 @@ document.querySelector('.calculator__keys').addEventListener('click', (e) => {
   e.preventDefault();
   let input = e.target.value;
 
+  if (e.target.classList.contains('number')) {
+    if (ui.isNumInputNextOk == true) {
+      ui.pushText(input);
+    }
+
+    if (ui.isNumInputNextOk == false) {
+      ui.clearText();
+      ui.isNumInputNextOk = true;
+      ui.pushText(input);
+    }
+  }
+
   // when a number or an operator is clicked
-  if (e.target.classList.contains('number') || e.target.classList.contains('operator')) {
+  if (e.target.classList.contains('operator')) {
     ui.pushText(input);
   }
 
@@ -60,11 +82,10 @@ document.querySelector('.calculator__keys').addEventListener('click', (e) => {
 
   //when the SOLVE(=) kye is clicked
   if (e.target.id == 'solve') {
-    //solve the given operand
     ui.solve();
-    // console.log(`Inside of the solve key + ${ui.operand}`)
+    //JUST FOR TESTING
   }
-  //console.log(`Outside of if + ${ui.operand}`)
+
   //show on the display
   document.getElementById('text--big').textContent = ui.operand;
 })

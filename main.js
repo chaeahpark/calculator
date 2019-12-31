@@ -1,6 +1,7 @@
 class Calculator {
   constructor() {
     this.operand = "";
+    this.answer;
   }
 
   // get the operand on the display
@@ -28,6 +29,11 @@ class Calculator {
     this.setDisplay("");
   }
 
+  solve() {
+    this.answer = eval(this.operand);
+    this.clearText();
+    this.operand = this.answer.toString();
+  }
 }
 
 let ui = new Calculator()
@@ -37,17 +43,28 @@ document.querySelector('.calculator__keys').addEventListener('click', (e) => {
   e.preventDefault();
   let input = e.target.value;
 
+  // when a number or an operator is clicked
   if (e.target.classList.contains('number') || e.target.classList.contains('operator')) {
     ui.pushText(input);
   }
 
+  // when the ARROW is clicked
   if (e.target.id == 'arrow') {
     ui.popText();
   }
 
+  //when the C key is clicked
   if (e.target.id == 'allClear') {
-    clearText();
+    ui.clearText();
   }
 
-  console.log(ui.operand);
+  //when the SOLVE(=) kye is clicked
+  if (e.target.id == 'solve') {
+    //solve the given operand
+    ui.solve();
+    // console.log(`Inside of the solve key + ${ui.operand}`)
+  }
+  //console.log(`Outside of if + ${ui.operand}`)
+  //show on the display
+  document.getElementById('text--big').textContent = ui.operand;
 })

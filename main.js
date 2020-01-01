@@ -80,6 +80,7 @@ document.querySelector('.calculator__keys').addEventListener('click', (e) => {
   //when the C key is clicked
   if (e.target.id == 'allClear') {
     ui.clearText();
+    document.getElementById('text--small').textContent = '';
   }
 
   //when the SOLVE(=) kye is clicked

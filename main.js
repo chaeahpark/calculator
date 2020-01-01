@@ -4,6 +4,7 @@ class Calculator {
     this.previousOperand = "";
     this.answer;
     this.equalSign = '=';
+    //check if it is okay to push the number input. 
     this.isNumInputNextOk = true;
   }
 
@@ -67,6 +68,7 @@ document.querySelector('.calculator__keys').addEventListener('click', (e) => {
 
   // when a number or an operator is clicked
   if (e.target.classList.contains('operator')) {
+    ui.isNumInputNextOk = true;
     ui.pushText(input);
   }
 

@@ -24,9 +24,11 @@ body {
 }
 
 .container {
-  width: 40%;
-  height: 100%;
-  background-color: #061610;
+  min-width: 400px;
+  min-height: 630px;
+  /*height: 100%;*/
+  border-radius: 20px;
+  background-color: #2E3530;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,15 +36,18 @@ body {
 
 /*------Calculator basic setup-------*/
 .calculator {
-  width: 70%;
-  height: 80%;
+  width: 80%;
+  height: 100%;
+  padding: 2rem 0;
+  /*height: 80%; nothing happens*/
   display: grid;
-  grid-template-rows: 1fr 4fr;
-  grid-gap: 1.5rem;
+  grid-template-rows: 1fr 3fr;
+  grid-gap: 1rem;
 }
 
 /*------Display-------*/
-.calcualtor__display {
+.calculator__display {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -58,28 +63,41 @@ body {
 }
 
 .display--small {
-  height: 25%;
-  background-color: #061610;
-  /*-----border-----*/
-  border: 2px solid yellow;
+  min-height: 25px;
+  background-color: ;
+  /*----guideline ----*/
+  /*border: 2px solid yellow;*/
+
 }
 
 .display--big {
-  height: 75%;
-  background-color: #061610;
-  /*-----border-----*/
-  border: 2px solid yellow;
+  min-height: 85px;
+  background-color: ;
+
+  /*----guideline ----*/
+  /*border: 2px solid yellow;*/
 }
 
 #text--big {
   font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+#text--small {
+  margin: 0;
 }
 
 /*------Keys-------*/
 .calculator__keys {
   width: 100%;
   height: 100%;
-  border: 2px solid red;
+  /* key size is shrunken*/
+
+  /*----guideline ----*/
+  /*border: 2px solid red;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
@@ -89,9 +107,16 @@ form {
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-evenly;
   grid-gap: 0.5rem;
+  /*for testing*/
+  /*margin: 0.3rem 0.3rem;*/
+
+  /*----guideline ----*/
+  /*border: solid 2px white;*/
 }
 
 .calculator__key {
+  width: 70px;
+  height: 70px;
   border: none;
   border-radius: 50%;
   font-size: 1.5rem;
@@ -105,32 +130,33 @@ form {
 .number,
 #point {
   color: #F6F8FF;
-  background-color: #061610;
-  border: 1px solid green;
+  background-color: #2E3530;
+  /*----guideline ----*/
+  /*border: 1px solid green;*/
 }
 
 .operator,
 #solve {
-  color: #57D1B4;
+  color: #2ABFAD;
   background-color: #F6F8FF;
 }
 
 #arrow {
-  background-color: #50514F;
+  background-color: #AAAAAA;
 }
 
 #allClear {
-  background-color: #50514F;
+  background-color: #AAAAAA;
 }
 
 #point {
-  background-color: #061610;
+  background-color: ;
 }
 
 
 
 @media screen and (max-width: 765px) {
   .container {
-    width: 90%;
+    min-width: 300px;
   }
 }

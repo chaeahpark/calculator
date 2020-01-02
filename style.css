@@ -29,6 +29,7 @@ body {
   /*height: 100%;*/
   border-radius: 20px;
   background-color: #2E3530;
+  box-shadow: 0.5rem 0.5rem 3rem 0.8rem #AAAAAA;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,5 +159,12 @@ form {
 @media screen and (max-width: 765px) {
   .container {
     min-width: 300px;
+    min-height: initial;
+    box-shadow: 0.2rem 0.2rem 1.5rem 0.8rem #AAAAAA;
+  }
+
+  .calculator__key {
+    width: 55px;
+    height: 55px;
   }
 }
